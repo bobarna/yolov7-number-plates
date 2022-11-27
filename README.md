@@ -1,3 +1,12 @@
+# Transfer Learning to Number Plate Recognition
+
+Run inference (detect licence plates)
+```
+python detect.py --weights runs/train/number-plates7/weights/last.pt --img-size 448 --source number-plates-hun/test/ --save-txt --name test-number-plates
+```
+`--save-txt` also saves the labels as `*.txt` files. 
+(`detect.py` could also take in single images instead of a whole directory.)
+
 # Official YOLOv7
 
 Implementation of paper - [YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors](https://arxiv.org/abs/2207.02696)
