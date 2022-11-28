@@ -1,6 +1,8 @@
 # Transfer Learning to Number Plate Recognition
+## Main repository of the project
+[https://github.com/bobarna/bme-image-processing](https://github.com/bobarna/bme-image-processing)
 
-Run inference (detect licence plates)
+## Run inference (detect licence plates)
 ```
 python detect.py --weights runs/train/number-plates7/weights/last.pt --img-size 448 --source number-plates-hun/test/ --save-txt --name test-number-plates
 ```
