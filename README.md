@@ -9,7 +9,7 @@ python detect.py --weights runs/train/number-plates7/weights/last.pt --img-size 
 `--save-txt` also saves the labels as `*.txt` files. 
 (`detect.py` could also take in single images instead of a whole directory.)
 
-## Hungarian License Plate Recgnition Dataset
+## Hungarian License Plate Recognition Dataset
 Images of cars with license plates (without labels) is available here:
 https://barnabasborcsok.com/number-plates-hun-1342.zip
 
