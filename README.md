@@ -9,6 +9,11 @@ python detect.py --weights runs/train/number-plates7/weights/last.pt --img-size 
 `--save-txt` also saves the labels as `*.txt` files. 
 (`detect.py` could also take in single images instead of a whole directory.)
 
+## Run transfer learning
+```
+python3 train.py --workers 8 --device 0 --batch-size 8 --data data/number-plates.yaml --img 420 --cfg cfg/training/yolov7-number-plates.yaml --weights yolov7_training.pt --name yolov7-custom --hyp data/hyp.scratch.custom.yaml
+```
+
 ## Hungarian License Plate Recognition Dataset
 Images of cars with license plates (without labels) is available here:
 https://barnabasborcsok.com/number-plates-hun-1342.zip
