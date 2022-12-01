@@ -4,26 +4,43 @@
 
 ## Run inference (detect licence plates)
 ```
-python detect.py --weights runs/train/number-plates7/weights/last.pt --img-size 448 --source number-plates-hun/test/ --save-txt --name test-number-plates
+python detect.py --weights weights-number-plates.pt --img-size 448 --source number-plates-hun/ --name test-number-plates --save-txt --save-conf
 ```
-`--save-txt` also saves the labels as `*.txt` files. 
+
+`--weights`: pretrained weights (result of the transfer learning)
+`--img-size`: size used for the inference
+`--source`: folder containing the images
+`--name`: name for this inference
+`--save-txt`: also saves the labels as `*.txt` files 
+`--save-conf`: also saves the confidence in the `*.txt` files
 (`detect.py` could also take in single images instead of a whole directory.)
 
-## Run transfer learning
+Each line of a detection (`image_name.txt`) takes the following form:
+
+```
+object_id x_min x_max y_min y_max confidence
+```
+
+`object_id`: describes which object is detected (in our case, this is always
+0 for the number plate class)
+`x_min`, `x_max`, `y_min`, `y_max`: describe the dimension of the bounding box
+`confidence`: 0..1 value for the confidence of the given detection.
+
+(We modified `detect.py` to output detections in image-space, instead of the
+original relative dimensions.)
+
+## Run transfer learning (for reproducibility)
 ```
 python3 train.py --workers 8 --device 0 --batch-size 8 --data data/number-plates.yaml --img 420 --cfg cfg/training/yolov7-number-plates.yaml --weights yolov7_training.pt --name yolov7-custom --hyp data/hyp.scratch.custom.yaml
 ```
 
-## Hungarian License Plate Recognition Dataset
-Images of cars with license plates (without labels) is available here:
-https://barnabasborcsok.com/number-plates-hun-1342.zip
+**Hungarian License Plate Recognition Dataset:** 
+Images of cars with license plates (without labels) 
+- https://barnabasborcsok.com/number-plates-hun-1342.zip
+- backup: https://drive.google.com/file/d/1Hgds3pXZP2sX2EB0GeYWaFLiA96h4JlW/view?usp=share_link
 
-Backup:
-https://drive.google.com/file/d/1Hgds3pXZP2sX2EB0GeYWaFLiA96h4JlW/view?usp=share_link
-
-# Official YOLOv7
-For more details, see the [original
-implementation](https://github.com/WongKinYiu/yolov7) of the paper 
-[YOLOv7:Trainable bag-of-freebies sets new state-of-the-art for real-time object
-detectors](https://arxiv.org/abs/2207.02696).
+# Forked from the official YOLOv7 implementation
+For more details, see: 
+- [original implementation](https://github.com/WongKinYiu/yolov7) 
+- [paper](https://arxiv.org/abs/2207.02696)
 
