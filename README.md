@@ -7,12 +7,13 @@
 python detect.py --weights weights-number-plates.pt --img-size 448 --source number-plates-hun/ --name test-number-plates --save-txt --save-conf
 ```
 
-`--weights`: pretrained weights (result of the transfer learning)
-`--img-size`: size used for the inference
-`--source`: folder containing the images
-`--name`: name for this inference
-`--save-txt`: also saves the labels as `*.txt` files 
-`--save-conf`: also saves the confidence in the `*.txt` files
+- `--weights`: pretrained weights (result of the transfer learning)
+- `--img-size`: size used for the inference
+- `--source`: folder containing the images
+- `--name`: name for this inference
+- `--save-txt`: also saves the labels as `*.txt` files 
+- `--save-conf`: also saves the confidence in the `*.txt` files
+
 (`detect.py` could also take in single images instead of a whole directory.)
 
 Each line of a detection (`image_name.txt`) takes the following form:
@@ -21,10 +22,10 @@ Each line of a detection (`image_name.txt`) takes the following form:
 object_id x_min x_max y_min y_max confidence
 ```
 
-`object_id`: describes which object is detected (in our case, this is always
+- `object_id`: describes which object is detected (in our case, this is always
 0 for the number plate class)
-`x_min`, `x_max`, `y_min`, `y_max`: describe the dimension of the bounding box
-`confidence`: 0..1 value for the confidence of the given detection.
+- `x_min`, `x_max`, `y_min`, `y_max`: describe the dimension of the bounding box
+- `confidence`: 0..1 value for the confidence of the given detection.
 
 (We modified `detect.py` to output detections in image-space, instead of the
 original relative dimensions.)
