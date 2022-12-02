@@ -4,7 +4,7 @@ cutout.py inference
 Cuts out all the labels contained in inference/labels/*.txt from the
 corresponding inference/images/*.jpg files.
 
-inferences
+inference
 |- images/
 |   |- image1.jpg
 |   |- image2.jpg
@@ -17,10 +17,10 @@ inferences
     ...
     |_ imageN.txt
 
-Results are written to inferences/found-classes/*_0.jpg.
+Results are written to inference/found-classes/*_0.jpg.
 All found classes are written as different images *_0, *_1, etc.
 E.g.:
-inferences
+inference
 |- image*.jpg
 |- labels/
 |_ found-classes
@@ -60,8 +60,11 @@ cutout_dir.mkdir(parents=True, exist_ok=True)
 for img_path in images_dir.glob('*.jpg'):
     print("Processing {}".format(img_path))
     # Find corresponding label
-    # Assume that there is at most 1 corresponding label
-    label_file_name = list(labels_dir.glob("{}.txt".format(img_path.stem)))[0]
+    label_file_glob = list(labels_dir.glob("{}.txt".format(img_path.stem)))
+    if len(label_file_glob) < 1:
+        continue
+    # Assume that there is at most 1 corresponding .txt file
+    label_file_name = list(label_file_glob)[0]
     label_file = open(label_file_name, 'r')
     # Read each detected object in the label file
     objects = []
